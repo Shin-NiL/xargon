@@ -512,6 +512,7 @@ void StartWorx(void)
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 #ifdef GCW0
 	::screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 8, SDL_HWPALETTE);
+	SDL_ShowCursor(SDL_FALSE);
 #else
 	::screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 8, SDL_HWPALETTE | SDL_DOUBLEBUF);
 #endif
