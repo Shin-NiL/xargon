@@ -510,7 +510,11 @@ std::vector<music_file> music_data;
 void StartWorx(void)
 {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+#ifdef GCW0
+	::screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 8, SDL_HWPALETTE);
+#else
 	::screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 8, SDL_HWPALETTE | SDL_DOUBLEBUF);
+#endif
 
 	::opl.cur_song = NULL;
 	::sound.len = 0;
