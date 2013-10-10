@@ -181,6 +181,7 @@ void winput (vptype *vp, int x, int y, int font, char *text, int maxlen) {
 	char tempstr[2];
 	int firstflag=1;
 
+
 	switch (font) {
 		case 1: fontx=8; break;			// 8x8
 		case 2: fontx=6; break;			// 6x6
@@ -190,6 +191,12 @@ void winput (vptype *vp, int x, int y, int font, char *text, int maxlen) {
 	tempstr[1]=0;
 	do {
 		key=wgetkey (vp,x+fontx*strlen(text),y,font);
+#ifdef GCW0
+	if (key == SDLK_SPACE) 	key = 'Y';
+	else if (key == SDLK_LSHIFT) 	key = 'X';
+	else if (key == SDLK_LCTRL) 	key = 'A';
+	else if (key == SDLK_LALT) 	key = 'B';
+#endif
 		if ((key>=32)&&(key<128)) {
 			if (firstflag) {
 				firstflag=0;

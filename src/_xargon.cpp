@@ -732,10 +732,14 @@ int askquit (void) {
 	defwin (&quitwin,10,64,9,1,0,0,textbox);
 	drawwin (&quitwin);
 	drawshape (&quitwin.inside,0x210b,10,3);
-	do {checkctrl0(0);}
-		while ((key==0)&&(fire1==0)&&(fire2==0)&&(dx1==0)&&(dy1==0));
+	do {
+		checkctrl0(0);
+#ifdef GCW0
+		if (key == SDLK_RETURN) key = 'Y';
+#endif
+	} while ((key==0)&&(fire1==0)&&(fire2==0)&&(dx1==0)&&(dy1==0));
 	key=toupper(key); return (key);
-	};
+};
 
 void drawcell (int x, int y) {
 	int boardcell;
@@ -1220,8 +1224,11 @@ void play (int demoflg) {
 		begclock=getclock();
 		gamecount++;
 		checkctrl(1);
-
+#ifdef GCW0
+		if (key!=0 && key <=127 && key >=-128) {
+#else
 		if (key!=0) {
+#endif
 			key=toupper(key);
 			if (key==cheatchar) cheatcount++;
 			else {cheatcount=1; cheatchar=key;};
