@@ -735,7 +735,7 @@ int askquit (void) {
 	do {
 		checkctrl0(0);
 #ifdef GCW0
-		if (key == SDLK_RETURN) key = 'Y';
+	if (key == SDLK_RETURN) key = 'Y';
 #endif
 	} while ((key==0)&&(fire1==0)&&(fire2==0)&&(dx1==0)&&(dy1==0));
 	key=toupper(key); return (key);
@@ -1169,6 +1169,8 @@ void play (int demoflg) {
 	setpagemode (1);
 	dolevelsong();
 	enable();
+	moddrawboard();
+
 
 	do {
 //		enable();
